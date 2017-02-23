@@ -15,8 +15,11 @@ public class Producer {
 			channel = connection.createChannel();   
 			channel.exchangeDeclare(EXCHANGE_NAME, "topic");   
 			String routingKey = getRouting(argv);   
-			String message = getMessage(argv);   
-			channel.basicPublish(EXCHANGE_NAME, routingKey, null, message.getBytes());   
+			String message = getMessage(argv);
+			for (int i = 0; i < 1000; i++) {
+				String mess = message+"-"+i;
+				channel.basicPublish(EXCHANGE_NAME, routingKey, null, mess.getBytes());   
+			}
 			System.out.println(" [x] Sent '" + routingKey + "':'" + message + "'");  
 		}catch (Exception e) {   
 			e.printStackTrace();  
