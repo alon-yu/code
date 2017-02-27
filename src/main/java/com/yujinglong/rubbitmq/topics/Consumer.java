@@ -18,7 +18,7 @@ public class Consumer {
 			String queueName = channel.queueDeclare().getQueue();    
 			if (argv.length < 1){    
 				System.err.println("Usage: ReceiveLogsTopic [binding_key]...");    
-				System.exit(1);   
+				//System.exit(1);   
 			}     
 			for(String bindingKey : argv){      
 				channel.queueBind(queueName, EXCHANGE_NAME, bindingKey);   

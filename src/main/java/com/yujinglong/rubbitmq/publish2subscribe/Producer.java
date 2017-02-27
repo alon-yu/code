@@ -18,7 +18,8 @@ public class Producer {
 			channel.basicPublish(EXCHANGE_NAME, "test", null, mess.getBytes());  
 		}
 		System.out.println(" [x] Sent '" + message + "'");  
-		channel.close();  connection.close(); 
+		channel.close();  
+		connection.close(); 
 	}  
 	private static String getMessage(String[] strings){  
 		if (strings.length < 1)     

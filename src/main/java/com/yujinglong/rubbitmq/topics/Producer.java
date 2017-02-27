@@ -12,15 +12,18 @@ public class Producer {
 			ConnectionFactory factory = new ConnectionFactory();   
 			factory.setHost("localhost");    
 			connection = factory.newConnection();   
+			
 			channel = connection.createChannel();   
-			channel.exchangeDeclare(EXCHANGE_NAME, "topic");   
+			channel.exchangeDeclare(EXCHANGE_NAME, "topic");
+			
 			String routingKey = getRouting(argv);   
 			String message = getMessage(argv);
+			
 			for (int i = 0; i < 1000; i++) {
 				String mess = message+"-"+i;
 				channel.basicPublish(EXCHANGE_NAME, routingKey, null, mess.getBytes());   
 			}
-			System.out.println(" [x] Sent '" + routingKey + "':'" + message + "'");  
+			System.out.println(" [x] Sent '" + routingKey + "':'" + message + "'");
 		}catch (Exception e) {   
 			e.printStackTrace();  
 		}finally {   
@@ -28,14 +31,14 @@ public class Producer {
 				try {     
 					connection.close();    
 				}catch (Exception ignore) {
-				
+					
 				}   
 			}  
 		}
 	}  
 	private static String getRouting(String[] strings){  
 		if (strings.length < 1)      
-			return "anonymous.info";  
+			return "anonymous.info";
 		return strings[0]; 
 	} 
 	private static String getMessage(String[] strings){   
@@ -44,7 +47,7 @@ public class Producer {
 		return joinStrings(strings, " ", 1); 
 	}  
 	private static String joinStrings(String[] strings, String delimiter, int startIndex) {  
-		int length = strings.length;  
+		int length = strings.length;
 		if (length == 0 ) 
 			return "";  
 		if (length < startIndex ) 

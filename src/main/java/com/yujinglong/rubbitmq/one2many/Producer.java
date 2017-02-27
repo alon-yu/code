@@ -10,7 +10,8 @@ import com.rabbitmq.client.MessageProperties;
  * @author Administrator
  *
  */
-public class Producer {  
+public class Producer {
+	
 	private static final String TASK_QUEUE_NAME = "task_queue"; 
 	
 	public static void main(String[] argv) throws Exception {  
